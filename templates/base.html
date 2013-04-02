@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<link rel="stylesheet" type="text/css" href="/static/name.css" />
+<script language = "JavaScript" src = "/static/coverter.js"></script>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>N_Kcays-Blog</title>
+</head>
+	
+<body style="background-color:black; font-family:calibri; color:pink;"> <!-- background-image:url(/static/back.jpg) -->
+    	<table width="100%" height="100%" align="center" cellspacing="0">
+			<tr height="40"><th>
+				<hr width="100%" size="4" color="red" id="top"/>
+				<h1 style="background:yellow; color:black;" ><center><a href="/blog/">MY BLOG</a></center></h1>
+				<hr width="100%" size="4" color="green"/>
+			</tr>
+			<tr>
+				<td>
+					<table cellpadding="5" width="100%" height="500" border="1" bordercolor="green">
+						<tr>
+							<td width="13%"style="align: justify;" valign="top">
+								<hr>	
+								<b>CURRENCY CONVERTER</b><br>
+								<hr>	
+								<form name="currencyForm">
+									<p>British Pound  </p>
+									<input type="text" name="pounnd" placeholder="British Pound" maxlength="100" onKeyUp = "Pound()">
+									<p>USA Dollar  </p>					
+									<input type="text" name="dollar" placeholder="USA Dollar" maxlength="100" onKeyUp = "Dollar()">			
+									<p>Euro  </p>					
+									<input type="text" name="euro" placeholder="Euro" maxlength="100" onKeyUp = "Euro()">		
+									<p>Ghana Cedi  </p>					
+									<input type="text" name="cedi" placeholder="Ghana Cedi" maxlength="100" onKeyUp = "Cedi()">		
+								</form>
+								<hr>
+							</td>
+							<td style="overflow: hidden" width="70%" height= "20%" valign="top">
+								{% block content %}
+									{% for blog in blog_list %}
+										<h2><a href="/blog/detail/{{ blog.id }}/True">{{ blog.title }}</a></h2>
+										<ul>
+											<div>Created: {{ blog.created }}</div>
+											<div>Last updated: {{ blog.updated }}</div>
+											<div>{{ blog.body|linebreaks }}</div>
+										</ul>
+									{% endfor %}
+								{% endblock %}
+							</td>
+							<td valign="top">
+								{% block login %}
+									{% if request_user %}
+										<hr>
+											{% if full_name %}
+												Welcome, {{ full_name }}<br/>
+											{% endif %}
+											<a href='/account/logout'><button>Logout</button></a><br/>
+										<hr>
+									{% else %}
+										<hr>
+											<a href='/account/login'><button>Login</button></a> or 
+											<a href='/account/signup'><button>Sign Up</button></a>
+										<hr>
+									{% endif %}
+									<a href='/blog/searchpage'><button>Search</button></a><br/>
+								{% endblock %}
+								
+								{% block right %}
+								<img src="/static/nana.jpg" title="nana" alt="Nana" height="280" width="180"/>
+								{% endblock %}
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td height="25">
+					<center><a href="www.educationalservice.com" target="_blank">For More Information</a><br/>
+					<center><a href="mailto: nanakwame123@gmail.com ? cc=nanakwame123@ymail.com & subject=Educational Sevice" target="_blank">Contact Us</a>
+				</td>
+			</tr>
+		</table>
+		</div>
+</body>
+</html>

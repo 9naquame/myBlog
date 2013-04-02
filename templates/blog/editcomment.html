@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+
+{% block content %}
+
+
+	{%if comment.author != request_user%}
+		<h1>Sorry Hacker!!!!!</h1>
+		
+	{% else %}
+			<form method='post' action="">
+				{{ form }}
+				<input type='submit' name='Submit'>
+				<input type='reset' name='reset'>	
+			</form>
+		
+	{% endif %}
+
+{% endblock %}
+
+

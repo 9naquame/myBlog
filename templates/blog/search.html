@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+	{%block login%}
+	
+	<b>Search results for "<em style="background-color:orange; color:red">{{ term }}</em>"<b>:
+		{% for term in getSearch %}
+			<ul>	
+				<a href="/blog/detail/{{ term.id }}/True"><h4>{{ term.title }}</h4></a>
+			</ul>
+
+		{% endfor %}
+	{%endblock%}
+

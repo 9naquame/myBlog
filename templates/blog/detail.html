@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+
+{% block content %}
+	
+	<h1><div><b></b> {{blog.title}}</div></h1>
+	<ul>
+		<div><b>Created:</b> {{ blog.created }}</div><br/>
+		<div><b>Body:</b> {{ blog.body}}</div>
+	</ul>
+
+<h4>Comments</h4>
+	{% for c in comments %}
+	<ul>	
+		<div>Author: {{c.author}}</div>
+		<div>Body: {{c.body}}</div>
+		<div>Created:{{c.created}}</div>
+		<div>Last updated on {{ c.updated }}</div>
+		{%if c.author == request_user%}
+			<div><a href="/blog/editcomment/{{ c.id }}/">Edit Comment</a></div>
+		{%endif%}
+	</ul>
+	{% endfor  %}
+	
+<br />
+
+{% if request_user %}
+	<h4>New Comment</h4>
+		<form method='post' action="">
+			{{ form }}
+			<input type='submit' name='Submit'>
+			<input type='reset' name='reset'>	
+		</form>
+{% else %}
+	<a href='/account/login'>Login</a> to add comments<br/>
+{% endif %}
+
+
+
+
+
+{% endblock %}
